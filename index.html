@@ -196,7 +196,13 @@
   .price-list .i{ display:flex; align-items:center; gap:9px; font-size:12px; color:var(--text-dim); }
   .price-list svg{ width:14px; height:14px; color:var(--cyan); flex-shrink:0; }
   .price-cta{ margin-top:22px; height:40px; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:12px; cursor:pointer; }
-  .price-cta.ghost{ border:1px solid var(--line-bright); color:var(--text-dim); }
+  .price-cta.ghost{
+    background:var(--cyan);
+    border:1px solid var(--cyan);
+    color:#06110F;
+    border-radius:999px;
+    text-decoration:none;
+  }
   .price-cta.fill{ background:var(--cyan); color:#06110F; }
   .price-cta.soon{
     border:1px solid rgba(76,244,214,0.28);
@@ -689,7 +695,7 @@
         <div class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Qualified Now &amp; Recent Discoveries</div>
         <div class="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Token risk &amp; qualification context</div>
       </div>
-      <div class="price-cta ghost">Browse Feed</div>
+      <a class="price-cta ghost" href="https://app.dexsato.com/" target="_blank" rel="noopener noreferrer">Browse Feed</a>
     </div>
     <div class="price-card hi">
       <div class="price-badge">RECOMMENDED</div>
