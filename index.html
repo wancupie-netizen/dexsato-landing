@@ -137,15 +137,83 @@
     stroke-width:1;
   }
 
-  /* ---------- Stat bar ---------- */
-  .stat-bar{ display:grid; grid-template-columns:repeat(4,1fr); gap:0; background:transparent; border:1px solid var(--line); margin:20px 0 70px; border-radius:14px; overflow:hidden; }
-  .stat-cell{ background:var(--bg-raised); padding:20px 22px; text-align:center; position:relative; }
-  .stat-cell::before{ content:''; position:absolute; top:0; left:0; right:0; height:2px; }
-  .stat-cell.c-cyan::before{ background:var(--cyan); box-shadow:0 0 6px rgba(76,244,214,0.5); }
-  .stat-cell.c-violet::before{ background:var(--violet); box-shadow:0 0 6px rgba(185,140,255,0.5); }
-  .stat-cell .v{ font-family:var(--font-display); font-weight:700; font-size:24px; }
-  .stat-cell .l{ font-size:10px; color:var(--text-faint); margin-top:7px; letter-spacing:0.04em; }
-
+  /* ---------- Example detected signals ---------- */
+  .signal-preview{ margin:20px 0 70px; }
+  .signal-preview-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:18px; }
+  .signal-preview-kicker{ font-family:var(--font-display); font-size:10px; font-weight:700; letter-spacing:0.12em; color:var(--cyan); }
+  .signal-preview-title{ font-family:var(--font-display); font-size:22px; font-weight:700; margin-top:7px; letter-spacing:-0.01em; }
+  .signal-preview-copy{ max-width:500px; font-size:12px; color:var(--text-faint); line-height:1.6; text-align:right; }
+  .signal-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .signal-card{
+    min-height:220px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(76,244,214,0.16);
+    border-radius:16px;
+    background:
+      radial-gradient(circle at 92% 96%, rgba(76,244,214,0.08), transparent 38%),
+      var(--bg-raised);
+    padding:22px;
+  }
+  .signal-card::after{
+    content:'';
+    position:absolute;
+    right:-34px;
+    bottom:-52px;
+    width:150px;
+    height:150px;
+    border:1px solid rgba(76,244,214,0.10);
+    border-radius:50%;
+    pointer-events:none;
+  }
+  .signal-card.violet{
+    border-color:rgba(185,140,255,0.18);
+    background:
+      radial-gradient(circle at 92% 96%, rgba(185,140,255,0.09), transparent 38%),
+      var(--bg-raised);
+  }
+  .signal-card.bearish{
+    border-color:rgba(255,111,125,0.18);
+    background:
+      radial-gradient(circle at 92% 96%, rgba(255,111,125,0.07), transparent 38%),
+      var(--bg-raised);
+  }
+  .signal-card-top{ display:flex; align-items:center; gap:14px; }
+  .signal-token-logo{
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    border:1px solid rgba(76,244,214,0.22);
+    background:linear-gradient(145deg, rgba(76,244,214,0.12), rgba(14,20,28,0.96));
+    box-shadow:0 0 24px rgba(76,244,214,0.06);
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:-0.03em;
+    color:var(--cyan);
+  }
+  .signal-token-logo img{ width:100%; height:100%; display:block; object-fit:cover; border-radius:50%; }
+  .signal-card.bearish .signal-token-logo{ color:#ff7d8a; border-color:rgba(255,111,125,0.24); background:linear-gradient(145deg, rgba(255,111,125,0.11), rgba(14,20,28,0.96)); }
+  .signal-card.violet .signal-token-logo{ color:var(--violet); border-color:rgba(185,140,255,0.26); background:linear-gradient(145deg, rgba(185,140,255,0.12), rgba(14,20,28,0.96)); }
+  .signal-pair{ font-family:var(--font-display); font-size:15px; font-weight:700; color:var(--text); }
+  .signal-type{ margin-top:5px; font-size:12px; font-weight:600; color:var(--cyan); }
+  .signal-card.bearish .signal-type{ color:#ff7d8a; }
+  .signal-card.violet .signal-type{ color:var(--violet); }
+  .signal-evidence{ margin-top:22px; padding-top:16px; border-top:1px solid var(--line); display:flex; flex-direction:column; gap:9px; }
+  .signal-evidence-row{ display:flex; align-items:center; gap:9px; font-size:11.5px; color:var(--text-dim); }
+  .signal-evidence-row::before{ content:''; width:5px; height:5px; border-radius:50%; background:var(--cyan); box-shadow:0 0 6px rgba(76,244,214,0.45); flex-shrink:0; }
+  .signal-card.bearish .signal-evidence-row::before{ background:#ff7d8a; box-shadow:0 0 6px rgba(255,111,125,0.36); }
+  .signal-card.violet .signal-evidence-row::before{ background:var(--violet); box-shadow:0 0 6px rgba(185,140,255,0.36); }
+  .signal-card-foot{ display:flex; align-items:center; justify-content:space-between; gap:14px; margin-top:18px; }
+  .signal-time{ font-family:var(--font-mono); font-size:9px; letter-spacing:0.06em; color:var(--text-faint); text-transform:uppercase; }
+  .signal-spark{ width:82px; height:24px; opacity:0.82; }
+  .signal-spark path{ fill:none; stroke:var(--cyan); stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+  .signal-card.bearish .signal-spark path{ stroke:#ff7d8a; }
+  .signal-card.violet .signal-spark path{ stroke:var(--violet); }
   /* ---------- Centered section headers ---------- */
   .section{ padding:60px 0; }
   .hero + .section{ padding-top:30px; }
@@ -392,6 +460,8 @@
     .section-head-center h2{ font-size:26px; line-height:1.2; }
     .section-head-center p{ font-size:12.5px; }
 
+    .signal-grid{ grid-template-columns:repeat(2,1fr); }
+    .signal-card:last-child{ grid-column:1 / -1; }
     .testi-grid{ grid-template-columns:1fr; }
     .footer-top{ grid-template-columns:1fr; gap:24px; }
     .footer-brand p{ max-width:none; }
@@ -425,10 +495,12 @@
     .hero .sub{ font-size:21px; }
     .hero p{ font-size:12.5px; }
 
-    .stat-bar{ grid-template-columns:repeat(2,1fr); }
-    .stat-cell{ padding:17px 10px; }
-    .stat-cell .v{ font-size:21px; }
-    .stat-cell .l{ font-size:8.5px; line-height:1.35; }
+    .signal-preview{ margin-bottom:52px; }
+    .signal-preview-head{ align-items:flex-start; flex-direction:column; gap:10px; }
+    .signal-preview-copy{ text-align:left; }
+    .signal-grid{ grid-template-columns:1fr; }
+    .signal-card{ min-height:0; padding:20px; }
+    .signal-token-logo{ width:60px; height:60px; }
 
     .diff-card, .testi-card{ padding-left:18px; padding-right:18px; }
     .section-head-center h2{ font-size:24px; }
@@ -613,16 +685,80 @@
   </div>
 </section>
 
-<!-- STAT BAR -->
+<!-- EXAMPLE DETECTED SIGNALS -->
 <div class="wrap">
-  <div class="stat-bar">
-    <div class="stat-cell c-cyan"><div class="v">15</div><div class="l">QUALIFIED OBSERVATIONS · 24H</div></div>
-    <div class="stat-cell c-violet"><div class="v">3</div><div class="l">ACTIVE QUALIFIED POOLS</div></div>
-    <div class="stat-cell c-cyan"><div class="v">10m</div><div class="l">COLLECTOR FRESHNESS</div></div>
-    <div class="stat-cell c-violet"><div class="v">LIVE</div><div class="l">ENGINE STATUS</div></div>
-  </div>
-</div>
+  <section class="signal-preview" aria-labelledby="example-signals-title">
+    <div class="signal-preview-head">
+      <div>
+        <div class="signal-preview-kicker">EXAMPLE DETECTED SIGNALS</div>
+        <h2 class="signal-preview-title" id="example-signals-title">See the signal. See the evidence.</h2>
+      </div>
+      <p class="signal-preview-copy">Preview how DexSato surfaces token activity and detected market signals. Static examples shown for demonstration.</p>
+    </div>
 
+    <div class="signal-grid">
+      <article class="signal-card">
+        <div class="signal-card-top">
+          <div class="signal-token-logo"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/23095.png" width="64" height="64" loading="lazy" decoding="async" alt="BONK logo"></div>
+          <div>
+            <div class="signal-pair">BONK / SOL</div>
+            <div class="signal-type">Volume Acceleration</div>
+          </div>
+        </div>
+        <div class="signal-evidence">
+          <div class="signal-evidence-row">Volume expanding</div>
+          <div class="signal-evidence-row">Buyer activity rising</div>
+        </div>
+        <div class="signal-card-foot">
+          <div class="signal-time">Detected 12m ago</div>
+          <svg class="signal-spark" viewBox="0 0 82 24" aria-hidden="true">
+            <path d="M1 19 L10 17 L18 18 L27 13 L35 15 L44 10 L53 11 L62 6 L72 8 L81 3"/>
+          </svg>
+        </div>
+      </article>
+
+      <article class="signal-card bearish">
+        <div class="signal-card-top">
+          <div class="signal-token-logo"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/28752.png" width="64" height="64" loading="lazy" decoding="async" alt="dogwifhat WIF logo"></div>
+          <div>
+            <div class="signal-pair">WIF / SOL</div>
+            <div class="signal-type">Liquidity Weakening</div>
+          </div>
+        </div>
+        <div class="signal-evidence">
+          <div class="signal-evidence-row">Liquidity thinning</div>
+          <div class="signal-evidence-row">Sell pressure building</div>
+        </div>
+        <div class="signal-card-foot">
+          <div class="signal-time">Detected 31m ago</div>
+          <svg class="signal-spark" viewBox="0 0 82 24" aria-hidden="true">
+            <path d="M1 5 L11 7 L20 6 L29 10 L38 9 L47 14 L56 13 L65 18 L73 16 L81 21"/>
+          </svg>
+        </div>
+      </article>
+
+      <article class="signal-card violet">
+        <div class="signal-card-top">
+          <div class="signal-token-logo"><img src="https://s2.coinmarketcap.com/static/img/coins/64x64/29210.png" width="64" height="64" loading="lazy" decoding="async" alt="Jupiter JUP logo"></div>
+          <div>
+            <div class="signal-pair">JUP / SOL</div>
+            <div class="signal-type">Breakout Attempt</div>
+          </div>
+        </div>
+        <div class="signal-evidence">
+          <div class="signal-evidence-row">Testing resistance</div>
+          <div class="signal-evidence-row">Momentum improving</div>
+        </div>
+        <div class="signal-card-foot">
+          <div class="signal-time">Detected 48m ago</div>
+          <svg class="signal-spark" viewBox="0 0 82 24" aria-hidden="true">
+            <path d="M1 18 L10 16 L19 17 L28 14 L37 15 L46 11 L55 12 L64 8 L73 9 L81 5"/>
+          </svg>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>
 <!-- WHAT MAKES DEXSATO DIFFERENT -->
 <section class="section wrap" id="discovery">
   <div class="section-head-center">
